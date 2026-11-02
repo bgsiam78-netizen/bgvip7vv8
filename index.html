@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>BG SIAM - ULTIMATE DRAGON HACK</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Poppins:wght@500;700;900&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{width:100%;height:100%;overflow:hidden;background:#000;font-family:'Poppins',sans-serif}
+#game{position:fixed;inset:0;width:100%;height:100%;border:0;z-index:1;background:#020205}
+
+/* ===== TOUCH RIPPLE EFFECT (2s Duration) =====</i> */
+.touch-sparkle{
+  position:fixed;width:45px;height:45px;border-radius:50%;
+  border:2px solid #ff0055;background:radial-gradient(circle,rgba(255,0,85,0.6) 0%,transparent 70%);
+  transform:translate(-50%,-50%) scale(0.2);pointer-events:none;z-index:999999;
+  animation:touchAnim 2s cubic-bezier(0.1,1,0.3,1) forwards;
+}
+@keyframes touchAnim{
+  0%{transform:translate(-50%,-50%) scale(0.2);opacity:1;box-shadow:0 0 10px #ff0055;}
+  50%{opacity:0.8;box-shadow:0 0 30px #ffcc00,0 0 50px #ff0055;}
+  100%{transform:translate(-50%,-50%) scale(3.5);opacity:0;border-color:transparent;}
+}
+
+/* ===== LAUNCHER BUTTON ===== */
+#launcher{
+  position:fixed;top:70px;right:12px;z-index:99990;
+  width:60px;height:60px;border-radius:50%;cursor:pointer;
+  background:radial-gradient(circle at 35% 30%,#ff3366,#ff0033 50%,#440011);
+  border:3px solid #ffcc00;
+  box-shadow:0 0 30px rgba(255,0,85,.9),0 0 15px rgba(255,204,0,.7);
+  display:flex;align-items:center;justify-content:center;
+  animation:pulseLaunch 1.6s ease-in-out infinite;
+  user-select:none;
+}
+#launcher img{width:34px;height:34px;border-radius:50%;object-fit:cover;box-shadow:0 0 10px #fff;}
+@keyframes pulseLaunch{
+  0%,100%{transform:scale(1);box-shadow:0 0 25px rgba(255,0,85,.8)}
+  50%{transform:scale(1.1);box-shadow:0 0 45px rgba(255,204,0,1)}
+}
+
+/* ===== PASSWORD MODAL ===== */
+#passModal{
+  position:fixed;inset:0;z-index:100000;display:none;
+  background:rgba(2,2,5,0.85);backdrop-filter:blur(12px);
+  align-items:center;justify-content:center;
+}
+.pass-card{
+  width:min(310px,90vw);padding:26px 20px;border-radius:24px;text-align:center;
+  background:linear-gradient(165deg,#150812,#050207);
+  border:2.5px solid #ff0055;
+  box-shadow:0 0 60px rgba(255,0,85,.6),inset 0 0 20px rgba(255,0,85,.3);
+  position:relative;
+}
+.pass-logo{width:55px;height:55px;border-radius:50%;border:2px solid #ffcc00;margin:0 auto 10px;object-fit:cover;box-shadow:0 0 15px #ffcc00;}
+.pass-title{font-family:'Orbitron',monospace;font-size:18px;font-weight:900;color:#ff3366;letter-spacing:2px;text-shadow:0 0 15px rgba(255,0,85,.9)}
+.pass-sub{font-size:10px;color:#ff99bb;letter-spacing:2px;margin:6px 0 14px;font-family:'Poppins',sans-serif;font-weight:700;}
+.pass-inp{
+  width:100%;height:46px;border-radius:14px;border:1.5px solid #ff0055;
+  background:#0a0206;color:#fff;text-align:center;font-size:16px;font-weight:700;
+  outline:none;margin-bottom:12px;font-family:'Orbitron',monospace;letter-spacing:3px;
+  box-shadow:inset 0 0 12px rgba(255,0,85,.4);
+}
+.pass-btn{
+  width:100%;height:44px;border:none;border-radius:14px;cursor:pointer;
+  background:linear-gradient(180deg,#ff3366,#990022);
+  color:#fff;font-weight:900;font-size:13px;letter-spacing:2px;font-family:'Orbitron',monospace;
+  box-shadow:0 4px 20px rgba(255,0,85,.7);
+}
+.pass-err{color:#ff4466;font-size:11px;margin-top:10px;display:none;font-weight:700}
+.pass-x{
+  position:absolute;top:12px;right:16px;background:none;border:none;color:#ff6688;
+  font-size:18px;cursor:pointer;font-weight:900;
+}
+
+/* ===== MAIN CLUSTER (REALISTIC DRAGON FIRE THEME) ===== */
+#cluster{
+  position:fixed;top:25px;right:2px;z-index:99998;
+  display:none;align-items:center;justify-content:center;
+  user-select:none;touch-action:none;filter:drop-shadow(0 0 25px rgba(255,0,85,0.7));
+}
+
+/* REALISTIC DRAGON FIRE WINGS */
+.wing{
+  width:95px;height:190px;position:relative;pointer-events:none;z-index:2;
+  filter:drop-shadow(0 0 20px rgba(255,0,85,1)) drop-shadow(0 0 40px rgba(255,165,0,0.8));
+}
+.wing svg{width:100%;height:100%;overflow:visible}
+.wing-l .layer{transform-origin:92% 50%}
+.wing-r .layer{transform-origin:8% 50%}
+.wing-l .l1{animation:dragonFlL1 .55s ease-in-out infinite}
+.wing-l .l2{animation:dragonFlL2 .55s ease-in-out infinite .03s}
+.wing-l .l3{animation:dragonFlL3 .55s ease-in-out infinite .06s}
+.wing-l .l4{animation:dragonFlL2 .55s ease-in-out infinite .09s}
+.wing-r .l1{animation:dragonFlR1 .55s ease-in-out infinite}
+.wing-r .l2{animation:dragonFlR2 .55s ease-in-out infinite .03s}
+.wing-r .l3{animation:dragonFlR3 .55s ease-in-out infinite .06s}
+.wing-r .l4{animation:dragonFlR2 .55s ease-in-out infinite .09s}
+
+@keyframes dragonFlL1{0%,100%{transform:rotate(8deg) scale(1)}50%{transform:rotate(-25deg) scale(1.08)}}
+@keyframes dragonFlL2{0%,100%{transform:rotate(12deg) scale(1)}50%{transform:rotate(-32deg) scale(1.12)}}
+@keyframes dragonFlL3{0%,100%{transform:rotate(18deg) scale(1)}50%{transform:rotate(-38deg) scale(1.16)}}
+@keyframes dragonFlR1{0%,100%{transform:rotate(-8deg) scale(1)}50%{transform:rotate(25deg) scale(1.08)}}
+@keyframes dragonFlR2{0%,100%{transform:rotate(-12deg) scale(1)}50%{transform:rotate(32deg) scale(1.12)}}
+@keyframes dragonFlR3{0%,100%{transform:rotate(-18deg) scale(1)}50%{transform:rotate(38deg) scale(1.16)}}
+
+#card{
+  width:230px;position:relative;z-index:3;
+  background:
+    radial-gradient(ellipse at 50% -10%,rgba(255,0,85,0.35),transparent 50%),
+    linear-gradient(175deg,#1c0816 0%,#0a0208 50%,#030104 100%);
+  border:3px solid #ff0055;
+  border-radius:24px;
+  box-shadow:
+    0 0 0 1.5px rgba(255,204,0,0.4),
+    0 0 50px rgba(255,0,85,0.7),
+    0 15px 35px rgba(0,0,0,0.9),
+    inset 0 1px 0 rgba(255,255,255,0.3);
+  overflow:hidden;
+}
+#card::after{
+  content:'';position:absolute;inset:0;pointer-events:none;opacity:0.15;
+  background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(255,0,85,0.15) 2px,rgba(255,0,85,0.15) 3px);
+}
+
+.topbar{
+  display:flex;align-items:center;justify-content:center;gap:6px;
+  padding:12px 8px 4px;cursor:grab;position:relative;z-index:1;
+}
+.top-logo{width:22px;height:22px;border-radius:50%;border:1.5px solid #ffcc00;object-fit:cover;}
+.mod-title{
+  font-family:'Orbitron',monospace;font-size:12px;font-weight:900;color:#ff3366;
+  letter-spacing:1.5px;text-shadow:0 0 15px rgba(255,0,85,0.9);
+}
+
+.statline{
+  display:flex;justify-content:space-between;padding:2px 12px 6px;
+  font-family:'Poppins',sans-serif;font-size:7px;color:#ff99bb;letter-spacing:0.5px;font-weight:700;
+  position:relative;z-index:1;
+}
+.statline b{color:#fff;font-weight:900}
+
+.lock{
+  text-align:center;font-family:'Orbitron',monospace;font-size:8.5px;font-weight:900;
+  color:#00ffcc;letter-spacing:2px;margin:2px 0 6px;
+  text-shadow:0 0 15px rgba(0,255,204,0.9);position:relative;z-index:1;
+}
+
+.hud{
+  margin:0 12px 8px;padding:12px 10px;
+  background:linear-gradient(160deg,rgba(30,0,30,0.9),rgba(10,0,20,0.95));
+  border:2px solid rgba(255,0,128,0.6);
+  border-radius:16px;
+  box-shadow:inset 0 0 35px rgba(255,0,128,0.25),0 0 20px rgba(255,0,128,0.3);
+  display:flex;align-items:center;gap:10px;position:relative;z-index:1;
+}
+
+.ball-wrap{
+  width:62px;height:62px;position:relative;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+}
+.ring1{
+  position:absolute;inset:0;border-radius:50%;
+  border:2px solid rgba(255,0,128,0.7);
+  animation:spin 2.5s linear infinite;
+}
+.ring1 i{
+  position:absolute;width:7px;height:7px;border-radius:50%;
+  background:#ff007f;box-shadow:0 0 12px #ff007f;
+}
+.ring1 i:nth-child(1){top:-3.5px;left:50%;margin-left:-3.5px}
+.ring1 i:nth-child(2){bottom:-3.5px;left:50%;margin-left:-3.5px;background:#00ffff;box-shadow:0 0 12px #00ffff}
+.ring2{
+  position:absolute;inset:7px;border-radius:50%;
+  border:1.5px dashed rgba(0,255,204,0.6);
+  animation:spin 4s linear infinite reverse;
+}
+@keyframes spin{to{transform:rotate(360deg)}}
+.ball{
+  width:40px;height:40px;border-radius:50%;z-index:2;position:relative;
+  background:radial-gradient(circle at 32% 28%,#ff88bb,#ff0044 45%,#550015 90%);
+  border:2px solid rgba(255,200,220,0.8);
+  box-shadow:0 0 25px rgba(255,0,64,0.9),inset 0 -5px 12px rgba(0,0,0,0.6);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Orbitron',monospace;font-size:18px;font-weight:900;color:#fff;
+  text-shadow:0 1px 5px #000;
+}
+
+.hud-r{flex:1;min-width:0}
+.badge{
+  display:flex;align-items:center;gap:6px;padding:5px 12px;border-radius:9px;margin-bottom:6px;
+  font-family:'Orbitron',monospace;font-size:14px;font-weight:900;letter-spacing:1px;
+}
+.badge img{width:16px;height:16px;border-radius:50%;object-fit:cover;border:1px solid #fff;}
+.badge.SMALL{
+  background:linear-gradient(180deg,#00d2ff,#0055cc);
+  color:#f0faff;border:1px solid rgba(120,220,255,0.7);
+  box-shadow:0 0 18px rgba(0,140,255,0.7),inset 0 1px 0 rgba(255,255,255,0.4);
+}
+.badge.BIG{
+  background:linear-gradient(180deg,#ff3366,#990022);
+  color:#fff0f5;border:1px solid rgba(255,120,150,0.7);
+  box-shadow:0 0 18px rgba(255,0,85,0.7),inset 0 1px 0 rgba(255,255,255,0.4);
+}
+.badge.WAIT{
+  background:linear-gradient(180deg,#444,#222);
+  color:#aaa;border:1px solid #555;font-size:11px;box-shadow:none;
+}
+
+.sync{
+  display:flex;align-items:center;gap:4px;
+  font-family:'Poppins',sans-serif;font-size:8px;color:#ff99bb;margin-bottom:3px;font-weight:700;
+}
+.sync-track{flex:1;height:6px;background:rgba(40,0,25,0.9);border-radius:3px;overflow:hidden;border:1px solid rgba(255,0,100,0.4)}
+.sync-fill{
+  height:100%;width:99%;
+  background:linear-gradient(90deg,#ff007f,#00ffcc);
+  box-shadow:0 0 12px rgba(0,255,204,0.8);
+  transition:width .35s ease;
+}
+.meta{
+  font-family:'Poppins',sans-serif;font-size:7.5px;color:#ff99bb;
+  display:flex;justify-content:space-between;gap:2px;font-weight:700;
+}
+.meta b{color:#fff}
+
+.period{
+  text-align:center;font-family:'Poppins',sans-serif;font-size:9px;color:#ff99bb;
+  padding:0 10px 8px;letter-spacing:1px;font-weight:700;position:relative;z-index:1;
+}
+.period b{color:#fff;font-size:10.5px;font-family:'Orbitron',monospace;}
+
+.actions{display:flex;gap:8px;padding:0 12px 12px;position:relative;z-index:1}
+.btn{
+  flex:1;height:40px;border-radius:22px;cursor:pointer;
+  font-family:'Orbitron',monospace;font-size:11px;font-weight:900;letter-spacing:1px;
+}
+.btn-next{
+  border:1.5px solid #ff88bb;
+  background:linear-gradient(180deg,#ff3366 0%,#aa0033 50%,#550015 100%);
+  color:#fff;
+  box-shadow:0 4px 18px rgba(255,0,85,0.7),inset 0 1px 0 rgba(255,200,220,0.6);
+}
+.btn-close{
+  border:1.5px solid #ff0055;
+  background:linear-gradient(180deg,#220815,#0a0206);
+  color:#ff99bb;
+  box-shadow:0 4px 14px rgba(0,0,0,0.6);
+}
+</style>
+</head>
+<body>
+<iframe id="game" src="https://dkwin9.com/#/register?invitationCode=153412260157" allow="autoplay"></iframe>
+
+<!-- LAUNCHER -->
+<div id="launcher" title="BG SIAM">
+  <img src="21632.jpg" alt="Logo">
+</div>
+
+<!-- PASSWORD MODAL -->
+<div id="passModal">
+  <div class="pass-card">
+    <button class="pass-x" type="button" id="passClose">✕</button>
+    <img src="21632.jpg" class="pass-logo" alt="Logo">
+    <div class="pass-title">BG SIAM VIP</div>
+    <div class="pass-sub">ENTER DRAGON PASSWORD</div>
+    <input id="passIn" class="pass-inp" type="password" placeholder="PASSWORD" autocomplete="off">
+    <button class="pass-btn" type="button" id="unlockBtn">UNLOCK SYSTEM</button>
+    <div class="pass-err" id="loginErr">Wrong password</div>
+  </div>
+</div>
+
+<!-- FULL HACK PANEL WITH REALISTIC DRAGON FIRE WINGS -->
+<div id="cluster">
+  <!-- LEFT DRAGON FIRE WING -->
+  <div class="wing wing-l">
+    <svg viewBox="0 0 80 170" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="dfA" x1="1" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#ffffff"/><stop offset="20%" stop-color="#ff0055"/>
+          <stop offset="60%" stop-color="#990022"/><stop offset="100%" stop-color="#330011"/>
+        </linearGradient>
+        <linearGradient id="dfB" x1="1" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#ffcc00"/><stop offset="40%" stop-color="#ff3300"/><stop offset="100%" stop-color="#440000"/>
+        </linearGradient>
+        <linearGradient id="dfC" x1="1" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#ff99cc"/><stop offset="50%" stop-color="#ff0044"/><stop offset="100%" stop-color="#22000b"/>
+        </linearGradient>
+      </defs>
+      <path class="layer l3" fill="url(#dfA)" d="M68,78 C58,28 28,6 2,2 C14,30 22,55 30,78 C38,68 54,68 68,78Z"/>
+      <path class="layer l2" fill="url(#dfB)" d="M68,82 C55,40 24,20 1,18 C12,42 20,62 30,82 C40,72 55,72 68,82Z"/>
+      <path class="layer l1" fill="url(#dfA)" d="M68,86 C54,52 22,36 1,38 C12,58 20,72 30,88 C42,78 56,78 68,86Z"/>
+      <path class="layer l4" fill="url(#dfC)" d="M68,90 C52,62 22,55 1,58 C11,72 18,84 30,94 C44,84 56,82 68,90Z"/>
+      <path class="layer l2" fill="url(#dfB)" opacity="0.95" d="M68,94 C50,72 20,70 2,76 C10,86 16,94 30,100 C44,90 56,88 68,94Z"/>
+      <ellipse cx="68" cy="88" rx="6" ry="18" fill="#ff0033"/>
+      <ellipse cx="68" cy="88" rx="3" ry="12" fill="#ffcc00"/>
+    </svg>
+  </div>
+
+  <div id="card">
+    <div class="topbar" id="dragHandle">
+      <img src="21632.jpg" class="top-logo" alt="Logo">
+      <span class="mod-title">BG SIAM ‖ DRAGON</span>
+      <img src="21632.jpg" class="top-logo" alt="Logo">
+    </div>
+    <div class="statline">
+      <span>FPS: <b id="fpsVal">220 FPS</b></span>
+      <span>SYS: <b id="sysVal">ACTIVE</b></span>
+      <span>PING: <b id="pingVal">9MS</b></span>
+    </div>
+    <div class="lock" id="lockTxt">▣ DRAGON FIRE LOCKED</div>
+
+    <div class="hud">
+      <div class="ball-wrap">
+        <div class="ring1"><i></i><i></i></div>
+        <div class="ring2"></div>
+        <div class="ball" id="ballNum">—</div>
+      </div>
+      <div class="hud-r">
+        <div class="badge WAIT" id="sigBadge">WAIT</div>
+        <div class="sync">
+          <span>SYNC</span>
+          <div class="sync-track"><div class="sync-fill" id="syncFill"></div></div>
+          <span id="syncPct">99%</span>
+        </div>
+        <div class="meta">
+          <span>MODE <b id="modeSide">—</b></span>
+          <span>DRAGON</span>
+          <span><b id="timerVal">30</b>s</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="period">PERIOD: <b id="periodVal">—</b></div>
+
+    <div class="actions">
+      <button class="btn btn-next" type="button" id="nextBtn">NEXT</button>
+      <button class="btn btn-close" type="button" id="closeBtn">✕ CLOSE</button>
+    </div>
+  </div>
+
+  <!-- RIGHT DRAGON FIRE WING -->
+  <div class="wing wing-r">
+    <svg viewBox="0 0 80 170" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="dfRA" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#ffffff"/><stop offset="20%" stop-color="#ff0055"/>
+          <stop offset="60%" stop-color="#990022"/><stop offset="100%" stop-color="#330011"/>
+        </linearGradient>
+        <linearGradient id="dfRB" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#ffcc00"/><stop offset="40%" stop-color="#ff3300"/><stop offset="100%" stop-color="#440000"/>
+        </linearGradient>
+        <linearGradient id="dfRC" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#ff99cc"/><stop offset="50%" stop-color="#ff0044"/><stop offset="100%" stop-color="#22000b"/>
+        </linearGradient>
+      </defs>
+      <path class="layer l3" fill="url(#dfRA)" d="M12,78 C22,28 52,6 78,2 C66,30 58,55 50,78 C42,68 26,68 12,78Z"/>
+      <path class="layer l2" fill="url(#dfRB)" d="M12,82 C25,40 56,20 79,18 C68,42 60,62 50,82 C40,72 25,72 12,82Z"/>
+      <path class="layer l1" fill="url(#dfRA)" d="M12,86 C26,52 58,36 79,38 C68,58 60,72 50,88 C38,78 24,78 12,86Z"/>
+      <path class="layer l4" fill="url(#dfRC)" d="M12,90 C28,62 58,55 79,58 C69,72 62,84 50,94 C36,84 24,82 12,90Z"/>
+      <path class="layer l2" fill="url(#dfRB)" opacity="0.95" d="M12,94 C30,72 60,70 78,76 C70,86 64,94 50,100 C36,90 24,88 12,94Z"/>
+      <ellipse cx="12" cy="88" rx="6" ry="18" fill="#ff0033"/>
+      <ellipse cx="12" cy="88" rx="3" ry="12" fill="#ffcc00"/>
+    </svg>
+  </div>
+</div>
+
+<script>
+(function () {
+  var PASS = 'bgh';
+  var launcher = document.getElementById('launcher');
+  var passModal = document.getElementById('passModal');
+  var cluster = document.getElementById('cluster');
+  var passIn = document.getElementById('passIn');
+  var loginErr = document.getElementById('loginErr');
+  var unlocked = false;
+  var engineOn = false;
+
+  /* Touch Ripple Effect Everywhere on Document (2s Duration) */
+  document.addEventListener('pointerdown', function(e) {
+    var spark = document.createElement('div');
+    spark.className = 'touch-sparkle';
+    spark.style.left = e.clientX + 'px';
+    spark.style.top = e.clientY + 'px';
+    document.body.appendChild(spark);
+    setTimeout(function() { spark.remove(); }, 2000);
+  });
+
+  launcher.onclick = function () {
+    if (unlocked) {
+      cluster.style.display = 'flex';
+      launcher.style.display = 'none';
+      return;
+    }
+    passModal.style.display = 'flex';
+    setTimeout(function () { passIn.focus(); }, 100);
+  };
+
+  document.getElementById('passClose').onclick = function () {
+    passModal.style.display = 'none';
+    passIn.value = '';
+    loginErr.style.display = 'none';
+  };
+
+  function unlock() {
+    if (passIn.value === PASS) {
+      unlocked = true;
+      passModal.style.display = 'none';
+      launcher.style.display = 'none';
+      cluster.style.display = 'flex';
+      passIn.value = '';
+      loginErr.style.display = 'none';
+      if (!engineOn) {
+        engineOn = true;
+        tick();
+        setInterval(tick, 250);
+      }
+    } else {
+      loginErr.style.display = 'block';
+      passIn.value = '';
+      passIn.focus();
+    }
+  }
+  document.getElementById('unlockBtn').onclick = unlock;
+  passIn.addEventListener('keydown', function (e) { if (e.key === 'Enter') unlock(); });
+
+  /* Drag function */
+  var handle = document.getElementById('dragHandle');
+  var dragging = false, sx, sy, ol, ot;
+  function ds(e) {
+    dragging = true;
+    var p = e.touches ? e.touches[0] : e;
+    sx = p.clientX; sy = p.clientY;
+    var r = cluster.getBoundingClientRect();
+    ol = r.left; ot = r.top;
+    if (e.cancelable) e.preventDefault();
+  }
+  function dm(e) {
+    if (!dragging) return;
+    var p = e.touches ? e.touches[0] : e;
+    cluster.style.left = (ol + p.clientX - sx) + 'px';
+    cluster.style.top = (ot + p.clientY - sy) + 'px';
+    cluster.style.right = 'auto';
+    if (e.cancelable) e.preventDefault();
+  }
+  function de() { dragging = false; }
+  handle.addEventListener('mousedown', ds);
+  handle.addEventListener('touchstart', ds, { passive: false });
+  document.addEventListener('mousemove', dm);
+  document.addEventListener('touchmove', dm, { passive: false });
+  document.addEventListener('mouseup', de);
+  document.addEventListener('touchend', de);
+
+  document.getElementById('closeBtn').onclick = function () {
+    cluster.style.display = 'none';
+    launcher.style.display = 'flex';
+  };
+  document.getElementById('nextBtn').onclick = function () { apply(getInfo(), true); };
+
+  function hash(str) {
+    var h = 2166136261;
+    for (var i = 0; i < str.length; i++) {
+      h ^= str.charCodeAt(i);
+      h = Math.imul(h, 16777619);
+    }
+    return h >>> 0;
+  }
+  function getInfo() {
+    var now = new Date();
+    var y = now.getUTCFullYear();
+    var m = String(now.getUTCMonth() + 1).padStart(2, '0');
+    var d = String(now.getUTCDate()).padStart(2, '0');
+    var total = now.getUTCHours() * 3600 + now.getUTCMinutes() * 60 + now.getUTCSeconds();
+    var idx = Math.floor(total / 30) + 1;
+    var left = 30 - (total % 30);
+    if (left === 0) left = 30;
+    return {
+      id: '' + y + m + d + '1000' + String(idx).padStart(4, '0'),
+      short: String(idx).padStart(4, '0'),
+      left: left
+    };
+  }
+  function predict(id) {
+    var h = hash('BG_SIAM_ULTIMATE_DRAGON' + id);
+    var num = h % 10;
+    return { num: num, size: num >= 5 ? 'BIG' : 'SMALL', sync: 98 + (h % 2), ping: 5 + (h % 8) };
+  }
+
+  var last = '';
+  function apply(info, force) {
+    if (!force && info.id === last) return;
+    last = info.id;
+    var r = predict(info.id);
+    document.getElementById('ballNum').textContent = r.num;
+    document.getElementById('periodVal').textContent = info.short;
+    document.getElementById('modeSide').textContent = r.size;
+    document.getElementById('syncPct').textContent = r.sync + '%';
+    document.getElementById('syncFill').style.width = r.sync + '%';
+    document.getElementById('pingVal').textContent = r.ping + 'MS';
+    document.getElementById('sysVal').textContent = 'ACTIVE';
+    document.getElementById('lockTxt').textContent = '▣ DRAGON FIRE LOCKED';
+    var b = document.getElementById('sigBadge');
+    b.innerHTML = '<img src="21632.jpg" alt="Logo"> ' + r.size;
+    b.className = 'badge ' + r.size;
+  }
+  function tick() {
+    var info = getInfo();
+    document.getElementById('timerVal').textContent = info.left;
+    var b = document.getElementById('sigBadge');
+    if (info.left <= 5) {
+      b.innerHTML = '<img src="21632.jpg" alt="Logo"> WAIT';
+      b.className = 'badge WAIT';
+      document.getElementById('lockTxt').textContent = '▣ SCANNING FIRE...';
+    }
+    if (info.id !== last) apply(info, false);
+  }
+})();
+</script>
+</body>
+</html>
